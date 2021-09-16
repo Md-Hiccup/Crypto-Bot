@@ -7,6 +7,9 @@ Install library
 
 Run the script
     $ python telegram-bot.py
+
+To get chat-id
+https://api.telegram.org/bot1<token>/sendMessage?chat_id=@channelName&text=123
 """
 import telebot
 
@@ -27,7 +30,7 @@ def hello(message):
     bot.send_message(message.chat.id, "Hello")
 
 # To send the message
-@bot.message_handler(commands=['newCoin'])
+@bot.message_handler(commands=['newCoin', 'newcoin'])
 def new_coin(message):
     msg = utils.get_scrap_data(KEY_MESSAGE)
     bot.send_message(message.chat.id, msg)

@@ -26,8 +26,8 @@ Follow the steps to create telegram bot
 
 ## To get Chat-id from [@GetIDs Bot](https://telegram.me/getidsbot)
 ```
-1. Create another Group/Channel
-2. Add your bot to Group/Channel
+1. Create another Group
+2. Add your bot to Group
 3. Add @getidsbot
 4. @getidsbot will send the chat-id
 5. Save chat-id
