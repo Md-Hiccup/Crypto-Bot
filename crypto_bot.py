@@ -1,4 +1,6 @@
 """ 
+ref: https://dev.to/rizkyrajitha/get-notifications-with-telegram-bot-537l
+
 Install library
     $ pip install python-dotenv
     $ pip install pyTelegramBotApi
@@ -6,21 +8,10 @@ Install library
 Run the script
     $ python telegram-bot.py
 """
-import os
-from requests.api import request
 import telebot
-import requests
 
-# Load .env file data
-from dotenv import load_dotenv
-import scrap_new_coin as scrappy
-
-load_dotenv()
-
-# Create telebot
-API_KEY = os.getenv('API_KEY')
-BOT_NAME = os.getenv('BOT_NAME')
-CHAT_ID = os.getenv('CHAT_ID')
+from consts import *
+import utils as utils
 
 bot = telebot.TeleBot(API_KEY, parse_mode='MARKDOWN')
 
@@ -38,12 +29,16 @@ def hello(message):
 # To send the message
 @bot.message_handler(commands=['newCoin'])
 def new_coin(message):
-    msg = scrappy.main()
+    msg = utils.get_scrap_data(KEY_MESSAGE)
     bot.send_message(message.chat.id, msg)
+    
+    # Broadcast msg if new coin updated
+    last_coin = utils.get_last_coin()
+    if last_coin not in msg:
+        utils.update_new_coin()
 
 @bot.message_handler(commands=['help'])
 def help(message):
-    cmd_list = ['/Greet', '/hello', '/newCoin']
     msg = f"""
     Welcome commands
     /hello - Hello
@@ -56,27 +51,8 @@ def help(message):
 def echo_all(message):
 	bot.reply_to(message, message.text)
  
- 
-# BroadCast Message
-def update_new_coin():
-    import json
-    msg = scrappy.main()
-    
-    # In url - sending message
-    # url = f'https://api.telegram.org/bot{API_KEY}/sendMessage?chat_id={CHAT_ID}&text={msg}'
-    # res = requests.get(url)
 
-    # In Post method sending message
-    url = 'https://api.telegram.org/bot{API_KEY}/sendMessage'
-    data = {
-        "chat_id" : CHAT_ID,
-        "text" : msg,
-        "parse_mode" : "markdown"
-    }
-    res = requests.post(url, json=data)
-
-
-update_new_coin()
+# utils.update_new_coin()
 
 bot.polling()
 

@@ -106,7 +106,7 @@ def main():
     # print(json.dumps(new_coin_list, indent=4))
     # print(len(new_coins))
     
-    return new_coin_message
+    return new_coin_message, new_coin_list
 
 
 # For Testing purpose: uncomment below line
