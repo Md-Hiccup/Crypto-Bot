@@ -8,6 +8,31 @@ A telegram bot for crypto news updates.
 2. pip install beautifulsoup4
 3. python3 scrap_new_coin.py
 
+## Create Bot from [@BotFather](https://telegram.me/botfather)
+Follow the steps to create telegram bot
+```
+1. Message @BotFather to start the conversation
+    /start
+2. Create new bot
+    /newbot
+3. Choose a new name for your bot
+    Telegram Tuts Bots
+4. Choose a username, must end with 'bot', like 'TutsBot', 'tuts_bot'
+    TeleTutsBot
+5. On successfull creation, an API token will generate
+6. Check you bot on - t.me/<username>
+    t.me/TeleTutsBot
+```
+
+## To get Chat-id from [@GetIDs Bot](https://telegram.me/getidsbot)
+```
+1. Create another Group/Channel
+2. Add your bot to Group/Channel
+3. Add @getidsbot
+4. @getidsbot will send the chat-id
+5. Save chat-id
+```
+
 ## 🎯 Features to be added
 
 - Binance New Coin Bot
