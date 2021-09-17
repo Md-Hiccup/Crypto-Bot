@@ -6,7 +6,7 @@ Install library
     $ pip install pyTelegramBotApi
 
 Run the script
-    $ python telegram-bot.py
+    $ python crypto_bot.py
 
 To get chat-id
 https://api.telegram.org/bot1<token>/sendMessage?chat_id=@channelName&text=123
@@ -32,13 +32,12 @@ def hello(message):
 # To send the message
 @bot.message_handler(commands=['newCoin', 'newcoin'])
 def new_coin(message):
-    msg = utils.get_scrap_data(KEY_MESSAGE)
-    bot.send_message(message.chat.id, msg)
-    
-    # Broadcast msg if new coin updated
-    last_coin = utils.get_last_coin()
-    if last_coin not in msg:
-        utils.update_new_coin()
+    msg = utils.update_new_coin_by_api()
+    if msg:
+        bot.send_message(message.chat.id, msg)
+    else:
+        msg = "No new coin updated on binance"
+        bot.send_message(message.chat.id, msg)
 
 @bot.message_handler(commands=['help'])
 def help(message):
