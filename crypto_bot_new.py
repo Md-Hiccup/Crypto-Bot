@@ -9,8 +9,10 @@ Run the script
 To get chat-id
 https://api.telegram.org/bot1<token>/sendMessage?chat_id=@channelName&text=123
 """
+import pathlib
+
 # Activate environment
-HOME = '/Users/hussain/Projects/mystuff/'
+HOME = pathlib.Path(__file__).parent.absolute().parent
 activate_this = f"{HOME}/env/bin/activate_this.py" #for ubuntu
 with open(activate_this) as f:
     code = compile(f.read(), activate_this, 'exec')
@@ -25,7 +27,7 @@ import utils as utils
 def start(update, context):
     msg = "Welcome I Am The Binance New Coin Chat Bot! Will update you on latest binance coin"
     update.message.reply_text(msg)
-    context.bot.sendMessage(chat_id=CHANNEL_NAME, text=msg)
+    # context.bot.sendMessage(chat_id=CHANNEL_NAME, text=msg)
     
 def repeater(update, context):
     if utils.is_user_or_group(update):
@@ -54,13 +56,16 @@ def new_coin(update, context):
 def main():
     updater = Updater(API_KEY, use_context=True)
     dp = updater.dispatcher
+    ## only ncomment below lines for making bot idle
     dp.add_handler(CommandHandler('start', start))
     dp.add_handler(CommandHandler('newCoin', new_coin))
     dp.add_handler(CommandHandler('help', help))
     dp.add_handler(MessageHandler(Filters.text, repeater))
-    
     updater.start_polling()
     updater.idle()
+    
+    # For cron script
+    # utils.update_new_coin_by_api()
 
 
 if __name__ == '__main__':

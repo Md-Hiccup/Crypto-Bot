@@ -1,10 +1,11 @@
 import os
 # to load .env file data
 from dotenv import load_dotenv
+import pathlib
 
 load_dotenv()
 
-HOME = '/Users/hussain/Projects/mystuff/Crypto-Bot'
+HOME = pathlib.Path(__file__).parent.absolute()
 
 # import Environment Keys
 API_KEY = os.getenv('API_KEY')
