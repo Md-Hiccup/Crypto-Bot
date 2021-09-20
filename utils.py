@@ -51,10 +51,11 @@ def update_new_coin_by_api():
 
 
 # In url - sending message
-# def send_message_url():
-    # msg = 'Hello'
-    # url = f'https://api.telegram.org/bot{API_KEY}/sendMessage?chat_id={CHAT_ID}&text={msg}'
-    # res = requests.get(url)
+def send_message_url():
+    msg = 'Hello'
+    url = f'https://api.telegram.org/bot{API_KEY}/sendMessage?chat_id={CHAT_ID}&text={msg}'
+    res = requests.get(url)
+    print(res)
 
 
 

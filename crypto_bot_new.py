@@ -11,7 +11,8 @@ https://api.telegram.org/bot1<token>/sendMessage?chat_id=@channelName&text=123
 """
 import pathlib
 
-# Activate environment
+# Comment below code if environment not needed
+# To Activate environment
 HOME = pathlib.Path(__file__).parent.absolute().parent
 activate_this = f"{HOME}/env/bin/activate_this.py" #for ubuntu
 with open(activate_this) as f:
@@ -56,7 +57,6 @@ def new_coin(update, context):
 def main():
     updater = Updater(API_KEY, use_context=True)
     dp = updater.dispatcher
-    ## only ncomment below lines for making bot idle
     dp.add_handler(CommandHandler('start', start))
     dp.add_handler(CommandHandler('newCoin', new_coin))
     dp.add_handler(CommandHandler('help', help))
