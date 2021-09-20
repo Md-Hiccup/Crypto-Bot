@@ -13,7 +13,7 @@ import pathlib
 
 # Comment below code if environment not needed
 # To Activate environment
-HOME = pathlib.Path(__file__).parent.absolute().parent
+HOME = pathlib.Path(__file__).parent.absolute().parent.parent
 activate_this = f"{HOME}/env/bin/activate_this.py" #for ubuntu
 with open(activate_this) as f:
     code = compile(f.read(), activate_this, 'exec')
