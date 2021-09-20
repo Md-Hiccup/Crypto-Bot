@@ -61,11 +61,11 @@ def main():
     dp.add_handler(CommandHandler('newCoin', new_coin))
     dp.add_handler(CommandHandler('help', help))
     dp.add_handler(MessageHandler(Filters.text, repeater))
-    updater.start_polling()
-    updater.idle()
+    # updater.start_polling()
+    # updater.idle()
     
     # For cron script
-    # utils.update_new_coin_by_api()
+    utils.update_new_coin_by_api()
 
 
 if __name__ == '__main__':

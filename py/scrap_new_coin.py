@@ -85,13 +85,23 @@ def format_coin_list(last_coin):
     lc_price = last_coin.get('price')
     lc_time = last_coin.get('time')
     lc_link = last_coin.get('link')
+    list_coin = get_binance_listed_coin(lc_symbol)
     # msg = f'{"Hi": <16} StackOverflow!'
     space = 15
     msg = f'{"Name": <{space}} {lc_name}\n'
     msg += f'{"Symbol": <{space}} [{lc_symbol}]({lc_link})\n'
     msg += f'{"Price": <{space}} {lc_price}\n'
-    msg += f'{"Time": <{space}} {lc_time}'
+    msg += f'{"Time": <{space}} {lc_time}\n'
+    msg += f'{"Binance": <{space}} {list_coin}\n'
     return msg
+
+# is coin listed on binancne
+def get_binance_listed_coin(coin_symbol):
+    url = f'https://www.binance.com/en/trade/{coin_symbol}_USDT'
+    res = requests.get(url).status_code
+    if res == 200:
+        return 'Listed'
+    return 'Not Listed'
 
 # main function
 def main():
